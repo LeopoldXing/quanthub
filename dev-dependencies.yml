@@ -1,0 +1,62 @@
+services:
+  mysql:
+    container_name: mysql-quanthub-dev
+    image: mysql:8.2.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: quanthub
+    ports:
+      - "13306:3306"
+    networks:
+      - quanthub-dev-network
+
+#  elasticsearch:
+#    container_name: es01-quanthub-prod
+#    image: elasticsearch:8.14.1
+#    environment:
+#      - discovery.type=single-node
+#      - bootstrap.memory_lock=false
+#      - xpack.security.enabled=false
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    volumes:
+#      - ./elasticsearch/data:/usr/share/elasticsearch/data
+#    networks:
+#      - quanthub-prod-network
+#    healthcheck:
+#      test: [ "CMD-SHELL", "curl -I http://localhost:9200 || exit 1" ]
+#      interval: 10s
+#      timeout: 10s
+#      retries: 5
+#    command: >
+#      /bin/bash -c "
+#      /usr/local/bin/docker-entrypoint.sh eswrapper &
+#      while ! curl -s http://localhost:9200; do sleep 1; done;
+#      curl -X PUT 'http://localhost:9200/quanthub-articles' -H 'Content-Type: application/json' -d '{\"settings\": {\"number_of_shards\": 1, \"number_of_replicas\": 1}}';
+#      curl -X PUT 'http://localhost:9200/quanthub-announcements' -H 'Content-Type: application/json' -d '{\"settings\": {\"number_of_shards\": 1, \"number_of_replicas\": 1}}';
+#      wait"
+#
+#  kibana:
+#    container_name: kibana-quanthub-prod
+#    image: kibana:8.14.1
+#    ports:
+#      - "5601:5601"
+#    volumes:
+#      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+#    healthcheck:
+#      test: [ "CMD-SHELL", "curl -I http://localhost:5601 || exit 1" ]
+#      interval: 10s
+#      timeout: 10s
+#      retries: 5
+#    depends_on:
+#      es01:
+#        condition: service_healthy
+#    networks:
+#      - quanthub-prod-network
+
+networks:
+  quanthub-dev-network:
+    name: quanthub-dev-network
+    driver: bridge

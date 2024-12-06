@@ -1,0 +1,77 @@
+# Laravel specific
+/vendor/
+/node_modules/
+.env
+/storage/*.key
+/public/storage
+/storage/logs/*.log
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*.php
+
+# React specific
+/resources/js/node_modules/
+/resources/js/build/
+/resources/js/dist/
+
+# PhpStorm specific
+.idea/
+
+# Logs and debug files
+*.log
+*.cache
+*.pid
+*.seed
+*.gz
+
+# Composer files
+composer.lock
+composer.phar
+
+# NPM/Yarn files
+yarn.lock
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+
+# Laravel Telescope
+/telescope/*.sqlite
+
+# Ignoring build artifacts
+/public/js/*
+/public/css/*
+!/public/js/*.map
+!/public/css/*.map
+
+# Ignoring PHPUnit result files
+.phpunit.result.cache
+
+# Sentry or other error tracking tools
+*.sentryclirc
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE/Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore local environments
+Homestead.yaml
+Homestead.json
+.vagrant/
+
+# Ignore Laravel Vapor files
+/.vapor/
+
+# Other
+*.env.backup
+*.env.example.backup
